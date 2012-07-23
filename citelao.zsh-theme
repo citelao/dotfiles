@@ -14,7 +14,7 @@ function statusicon {
 local cmd_status="%(?,%{$fg[green]%},%{$fg[red]%})$(statusicon)%{$reset_color%}"
 
 PROMPT='
-%{$cmd_status%} %{$fg[blue]%}%~ %{$fg[white]%}(%{$fg[green]%}%n%{$fg[white ]%})
+%{$cmd_status%} %{$fg[blue]%}%~ %{$fg[white]%}(%{$fg[green]%}%n%{$fg[white]%})
 %{$fg[green]%}$%{$reset_color%} '
 
 RPROMPT='$(git_prompt_info)%{$fg[white]%}$(~/.rvm/bin/rvm-prompt)%{$reset_color%} '
