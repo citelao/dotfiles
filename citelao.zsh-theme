@@ -17,7 +17,11 @@ PROMPT='
 %{$cmd_status%} %{$fg[blue]%}%~ %{$fg[white]%}(%{$fg[green]%}%n%{$fg[white]%})
 %{$fg[green]%}$%{$reset_color%} '
 
-RPROMPT='$(git_prompt_info)%{$fg[white]%}$(~/.rvm/bin/rvm-prompt)%{$reset_color%} '
+# RVM rprompt
+#RPROMPT='$(git_prompt_info)%{$fg[white]%}$(~/.rvm/bin/rvm-prompt)%{$reset_color%} '
+
+# Otherwise rprompt
+RPROMPT='$(git_prompt_info)%{$reset_color%} '
 
 SPROMPT="zsh: correct %R to %r? 
 %{$fg[green]%}[Y]urp %{$fg[grey]%}/ %{$fg[yellow]%}[N]urp %{$fg[grey]%}/ %{$fg[blue]%}[E]dit %{$fg[grey]%}/ %{$fg[red]%}[A]bort: %{$reset_color%}"

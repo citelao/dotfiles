@@ -1,0 +1,22 @@
+alias hyper ctrl;shift;alt;cmd
+
+##
+# Window hints
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+config windowHintsOrder "persist"
+
+bind e:${hyper} hint EAOUIYQJKX
+
+##
+# Window grids
+bind g:${hyper} grid padding:10 0:4,2
+
+##
+# Window movement
+#alias 
+
+##
+# Undo
+bind z:${hyper} undo
