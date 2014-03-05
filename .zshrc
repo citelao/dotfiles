@@ -13,7 +13,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Chocolat, Please!
-export EDITOR=choc
-export VISUAL=chocolat
-export GIT_EDITOR=choc
-export SVN_EDITOR=choc
+export EDITOR=vim
+export VISUAL=vim
+export GIT_EDITOR=vim
+export SVN_EDITOR=vim
