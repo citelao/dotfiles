@@ -2,7 +2,7 @@
 if [[ "$(uname)" == "Darwin" ]]; then
 	export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$HOME/.rvm/bin:$PATH
 else
-	# Don't change WSL path. We'll prob want to do this later
+	export PATH=$HOME/.rbenv/bin:$PATH
 fi
 
 # Oh, my ZSH!
@@ -34,7 +34,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
 
+if [[ "$(uname)" == "Linux" ]]; then
+	eval "$(rbenv init -)"
+fi
+
 unalias gm
 
-# added by travis gem
-[ -f /Users/citelao/.travis/travis.sh ] && source /Users/citelao/.travis/travis.sh
