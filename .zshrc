@@ -22,5 +22,10 @@ export NVM_DIR="/Users/citelao/.nvm"
 
 unalias gm
 
+# # python autoenv
+# source /usr/local/opt/autoenv/activate.sh
+# # require a virtualenv
+# export PIP_REQUIRE_VIRTUALENV=true
+
 # added by travis gem
 [ -f /Users/citelao/.travis/travis.sh ] && source /Users/citelao/.travis/travis.sh
