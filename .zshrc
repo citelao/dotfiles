@@ -1,5 +1,5 @@
 # Path!
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$HOME/.rvm/bin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$HOME/.rvm/bin:$HOME/.composer/vendor/bin:$PATH
 
 # Oh, my ZSH!
 ZSH=$HOME/.oh-my-zsh
