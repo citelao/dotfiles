@@ -37,9 +37,11 @@ ZSH_THEME="citelao"
 COMPLETION_WAITING_DOTS="true"
 
 if [[ "$(uname)" == "Darwin" ]]; then
-	plugins=(git brew osx zsh-syntax-highlighting)
+	# zsh-syntax-highlighting
+	plugins=(git brew osx)
 else
-	plugins=(git zsh-syntax-highlighting)
+	# zsh-syntax-highlighting
+	plugins=(git)
 fi
 
 if [[ -d "$ZSH" ]]; then
