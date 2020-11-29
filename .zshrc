@@ -1,8 +1,30 @@
 # Path!
+# add_to_path new/path/thing
+function add_to_path()
+{
+	addition=$1
+
+	if [[ -d "$addition" ]]; then
+		export PATH=$addition:$PATH
+	else
+		echo "Skipping non-existent path '$addition'"
+	fi
+}
+
 if [[ "$(uname)" == "Darwin" ]]; then
-	export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:$HOME/.rvm/bin:$HOME/.composer/vendor/bin:$PATH
+	add_to_path /usr/local/bin
+	add_to_path /usr/bin
+	add_to_path /bin
+	add_to_path /usr/sbin
+	add_to_path /sbin
+	add_to_path /usr/X11/bin
+	add_to_path $HOME/.rvm/bin
+	add_to_path $HOME/.composer/vendor/bin
+
+	# New Homebrew location!
+	add_to_path /opt/homebrew/bin
 else
-	export PATH=$HOME/.rbenv/bin:$PATH
+	add_to_path $HOME/.rbenv/bin
 fi
 
 # Oh, my ZSH!
