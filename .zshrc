@@ -12,14 +12,17 @@ function add_to_path()
 }
 
 if [[ "$(uname)" == "Darwin" ]]; then
-	add_to_path /usr/local/bin
+	# Original Homebrew path!
+	# add_to_path /usr/local/bin
+
 	add_to_path /usr/bin
 	add_to_path /bin
 	add_to_path /usr/sbin
 	add_to_path /sbin
-	add_to_path /usr/X11/bin
-	add_to_path $HOME/.rvm/bin
-	add_to_path $HOME/.composer/vendor/bin
+
+	# add_to_path /usr/X11/bin
+	# add_to_path $HOME/.rvm/bin
+	# add_to_path $HOME/.composer/vendor/bin
 
 	# New Homebrew location!
 	add_to_path /opt/homebrew/bin
