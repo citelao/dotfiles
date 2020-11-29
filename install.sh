@@ -50,3 +50,5 @@ function deploy_file()
 
 
 deploy_file "${FULL_SCRIPT_DIR}/.zshrc" ~/.zshrc
+# $ZSH_CUSTOM = .oh-my-zsh
+deploy_file "${FULL_SCRIPT_DIR}/citelao.zsh-theme" ~/.oh-my-zsh/themes/citelao.zsh-theme
