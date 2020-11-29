@@ -16,7 +16,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
 else
 	plugins=(git zsh-syntax-highlighting)
 fi
-source $ZSH/oh-my-zsh.sh
+
+if [[ -d "$ZSH" ]]; then
+	source $ZSH/oh-my-zsh.sh
+fi
 
 # vim, Please!
 export EDITOR=vim
@@ -38,4 +41,5 @@ if [[ "$(uname)" == "Linux" ]]; then
 	eval "$(rbenv init -)"
 fi
 
-unalias gm
+# Ignore errors with this.
+unalias gm 2>/dev/null

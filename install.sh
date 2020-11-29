@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
 # Install citelao's dotfiles!
+#
+# Remove existing stuff:
+# FORCE=true ./install.sh
 
 # Debug?
 # set -x
@@ -8,6 +11,9 @@
 set -u
 
 SCRIPT_DIR=$(dirname "$0")
+pushd $SCRIPT_DIR
+FULL_SCRIPT_DIR=$(pwd)
+popd
 
 # String formatters
 # stolen from Homebrew
@@ -32,9 +38,15 @@ function deploy_file()
 {
     source=$1
     dest=$2
-    echo "Deploying ${tty_blue}$source${tty_reset} to ${tty_blue}$dest${tty_reset}"
 
+    if [[ "${FORCE-}" = true ]]; then
+        echo "Removing existing ${tty_red}$dest${tty_reset}"
+        rm $dest
+    fi
+
+    echo "Deploying ${tty_blue}$source${tty_reset} to ${tty_blue}$dest${tty_reset}"
     ln -s $source $dest
 }
 
-deploy_file "${SCRIPT_DIR}/.zshrc" ~/.zshrc
+
+deploy_file "${FULL_SCRIPT_DIR}/.zshrc" ~/.zshrc
