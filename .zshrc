@@ -26,6 +26,14 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
 	# New Homebrew location!
 	add_to_path /opt/homebrew/bin
+
+	# Python --user installs
+	add_to_path $HOME/Library/Python/3.8/bin
+
+	# # Homebrew Ruby (which has M1 correctly setup)
+	# Nevermind.
+	# add_to_path /opt/homebrew/opt/ruby/bin
+	# add_to_path /opt/homebrew/lib/ruby/gems/3.0.0/bin
 else
 	add_to_path $HOME/.rbenv/bin
 fi
@@ -114,6 +122,9 @@ bindkey '^[[B' down-line-or-search
 if [[ "$(uname)" == "Darwin" ]]; then
 	export NVM_DIR="/Users/citelao/.nvm"
 	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+	# Don't update before every install.
+	export HOMEBREW_NO_AUTO_UPDATE=1
 fi
 
 if [[ "$(uname)" == "Linux" ]]; then
