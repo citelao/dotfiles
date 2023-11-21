@@ -131,5 +131,12 @@ if [[ "$(uname)" == "Linux" ]]; then
 	eval "$(rbenv init -)"
 fi
 
+if [[ "$(uname)" == "Darwin" ]]; then
+	eval "$(rbenv init -)"
+fi
+
 # Ignore errors with this.
 unalias gm 2>/dev/null
+
+# Stop updating stuff, Homebrew.
+HOMEBREW_NO_AUTO_UPDATE=1
