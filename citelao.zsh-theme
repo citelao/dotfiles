@@ -18,17 +18,9 @@ function beep_if_last_command_slow {
 	local seconds=$(echo $lastCommand | awk '{print $2}' | awk -F: '{ print ($1 * 60) + $2 }')
 
 	if [[ $seconds -gt 1 && $lastCommandId -ne $BESTO_LAST_COMMAND_ID ]]; then
-		# Play a nice sound!
+		# Play a nice sound! & remember that we did so for this command.
 		(afplay /System/Library/Sounds/Funk.aiff -q 1 &) > /dev/null
-		echo $lastCommand
-		echo "command:"
-		echo $lastCommandId
-		echo "bommand:"
-		echo $BESTO_LAST_COMMAND_ID
-		echo "EXPORTING"
-		export HELLO="world"
 		export BESTO_LAST_COMMAND_ID="$lastCommandId"
-		echo $BESTO_LAST_COMMAND_ID
 	fi
 }
 
