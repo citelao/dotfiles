@@ -13,24 +13,33 @@ function statusicon {
 
 function beep_if_last_command_slow {
 	# https://askubuntu.com/a/407761
-	local lastCommand=$(history -D | tail -n1)
+	local lastCommand=$(fc -l -D | tail -n1)
 	local lastCommandId=$(echo $lastCommand | awk '{print $1}')
 	local seconds=$(echo $lastCommand | awk '{print $2}' | awk -F: '{ print ($1 * 60) + $2 }')
 
-	if [[ $seconds -gt 3 ]] && [[ $lastCommandId -ne $BESTO_LAST_COMMAND_ID ]]; then
+	if [[ $seconds -gt 1 && $lastCommandId -ne $BESTO_LAST_COMMAND_ID ]]; then
 		# Play a nice sound!
 		(afplay /System/Library/Sounds/Funk.aiff -q 1 &) > /dev/null
 		echo $lastCommand
+		echo "command:"
 		echo $lastCommandId
+		echo "bommand:"
 		echo $BESTO_LAST_COMMAND_ID
-		BESTO_LAST_COMMAND_ID=$lastCommandId
+		echo "EXPORTING"
+		export HELLO="world"
+		export BESTO_LAST_COMMAND_ID="$lastCommandId"
+		echo $BESTO_LAST_COMMAND_ID
 	fi
 }
 
 local cmd_status="%(?,%{$fg[green]%},%{$fg[red]%})$(statusicon)%{$reset_color%}"
 
+precmd() {
+	beep_if_last_command_slow
+}
+
 PROMPT='
-$(beep_if_last_command_slow)%{$cmd_status%} %{$fg[blue]%}%~ %{$fg[white]%}(%{$fg[green]%}%n%{$fg[white]%})
+%{$cmd_status%} %{$fg[blue]%}%~ %{$fg[white]%}(%{$fg[green]%}%n%{$fg[white]%})
 %{$fg[green]%}$%{$reset_color%} '
 
 # RVM rprompt
