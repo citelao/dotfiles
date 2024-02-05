@@ -11,6 +11,7 @@ function statusicon {
 	fi
 }
 
+# https://zsh.sourceforge.io/Doc/Release/Functions.html
 function beep_if_last_command_slow {
 	# https://askubuntu.com/a/407761
 	local lastCommand=$(fc -l -D | tail -n1)
@@ -19,7 +20,7 @@ function beep_if_last_command_slow {
 
 	if [[ $seconds -gt 1 && $lastCommandId -ne $BESTO_LAST_COMMAND_ID ]]; then
 		# Play a nice sound! & remember that we did so for this command.
-		(afplay /System/Library/Sounds/Funk.aiff -q 1 &) > /dev/null
+		(afplay /System/Library/Sounds/Frog.aiff -q 1 &) > /dev/null
 		export BESTO_LAST_COMMAND_ID="$lastCommandId"
 	fi
 }
