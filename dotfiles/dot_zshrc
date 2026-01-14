@@ -148,3 +148,12 @@ unalias gm 2>/dev/null
 
 # Stop updating stuff, Homebrew.
 HOMEBREW_NO_AUTO_UPDATE=1
+
+
+# If cursor is installed, `c` calls cursor.
+# Otherwise, `c` calls `code`.
+if command -v cursor > /dev/null 2>&1; then
+	alias c='cursor'
+else
+	alias c='code'
+fi
