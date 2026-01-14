@@ -18,7 +18,8 @@ function beep_if_last_command_slow {
 	local lastCommandId=$(echo $lastCommand | awk '{print $1}')
 	local seconds=$(echo $lastCommand | awk '{print $2}' | awk -F: '{ print ($1 * 60) + $2 }')
 
-	if [[ $seconds -gt 1 && $lastCommandId -ne $BESTO_LAST_COMMAND_ID ]]; then
+	# If `-ne`: beep_if_last_command_slow:6: bad math expression: operator expected at `0' sometimes.
+	if [[ $seconds -gt 1 && $lastCommandId != $BESTO_LAST_COMMAND_ID ]]; then
 		# Play a nice sound! & remember that we did so for this command.
 		(afplay /System/Library/Sounds/Frog.aiff -q 1 &) > /dev/null
 		export BESTO_LAST_COMMAND_ID="$lastCommandId"
