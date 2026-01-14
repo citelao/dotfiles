@@ -5,6 +5,11 @@ Citelao's personal dotfiles
 ## Install
 
 ```
-chmod +x install.sh
-./install.sh
+brew install chezmoi
+chezmoi init https://github.com/citelao/dotfiles
+chezmoi apply
 ```
+
+## See also
+
+https://github.com/citelao/dotfiles2
