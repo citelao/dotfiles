@@ -107,7 +107,11 @@ else
 fi
 
 if [[ -d "$ZSH" ]]; then
-	source $ZSH/oh-my-zsh.sh
+	if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+		source $ZSH/oh-my-zsh.sh
+	else
+		echo "Oh-My-ZSH not found in $ZSH; https://ohmyz.sh/"
+	fi
 fi
 
 # vim, Please!
@@ -129,12 +133,14 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	export HOMEBREW_NO_AUTO_UPDATE=1
 fi
 
-if [[ "$(uname)" == "Linux" ]]; then
-	eval "$(rbenv init -)"
-fi
+if [[ -d "$HOME/.rbenv" ]]; then
+	if [[ "$(uname)" == "Linux" ]]; then
+		eval "$(rbenv init -)"
+	fi
 
-if [[ "$(uname)" == "Darwin" ]]; then
-	eval "$(rbenv init -)"
+	if [[ "$(uname)" == "Darwin" ]]; then
+		eval "$(rbenv init -)"
+	fi
 fi
 
 # Ignore errors with this.
