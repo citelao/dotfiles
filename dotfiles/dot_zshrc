@@ -7,7 +7,7 @@ function add_to_path()
 	if [[ -d "$addition" ]]; then
 		export PATH=$addition:$PATH
 	else
-		echo "Skipping non-existent path '$addition'"
+		echo "path: skipping '$addition'"
 	fi
 }
 
