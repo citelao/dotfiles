@@ -30,6 +30,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	# Python --user installs
 	add_to_path $HOME/Library/Python/3.8/bin
 
+	# Uv
+	add_to_path $HOME/.local/bin
+
 	# # Homebrew Ruby (which has M1 correctly setup)
 	# Nevermind.
 	# add_to_path /opt/homebrew/opt/ruby/bin
