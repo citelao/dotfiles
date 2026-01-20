@@ -123,10 +123,23 @@ export VISUAL=vim
 export GIT_EDITOR=vim
 export SVN_EDITOR=vim
 bindkey -v
-bindkey "${terminfo[kcuu1]}" up-line-or-search # but with expected up/down arrow movement
-bindkey "${terminfo[kcud1]}" down-line-or-search
-bindkey '^[[A' up-line-or-search 
-bindkey '^[[B' down-line-or-search
+
+# This is redundant with default keybindings.
+# https://github.com/ohmyzsh/ohmyzsh/blob/e0766905519fbc7982a590a195ee7c3e8bb594e8/lib/key-bindings.zsh
+#
+# bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search # but with expected up/down arrow movement
+# bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+# bindkey '^[[A' up-line-or-beginning-search 
+# bindkey '^[[B' down-line-or-beginning-search
+
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+
+# Hey, I like unique history per session. I like spaces in history.
+# Invert https://github.com/ohmyzsh/ohmyzsh/blob/e0766905519fbc7982a590a195ee7c3e8bb594e8/lib/history.zsh#L45
+setopt no_share_history
+setopt no_hist_ignore_space
+
 
 if [[ "$(uname)" == "Darwin" ]]; then
 	export NVM_DIR="/Users/citelao/.nvm"
