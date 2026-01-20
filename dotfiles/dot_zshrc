@@ -132,6 +132,7 @@ bindkey -v
 # bindkey '^[[A' up-line-or-beginning-search 
 # bindkey '^[[B' down-line-or-beginning-search
 
+# https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 
