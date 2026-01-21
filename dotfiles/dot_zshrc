@@ -164,7 +164,8 @@ fi
 unalias gm 2>/dev/null
 
 # Stop updating stuff, Homebrew.
-HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_AUTO_UPDATE=1
+# export HOMEBREW_NO_INSTALL_CLEANUP=1 # I'm OK with cleaning up unused stuff.
 
 # If cursor is installed, `c` calls cursor.
 # Otherwise, `c` calls `code`.
