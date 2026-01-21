@@ -166,7 +166,6 @@ unalias gm 2>/dev/null
 # Stop updating stuff, Homebrew.
 HOMEBREW_NO_AUTO_UPDATE=1
 
-
 # If cursor is installed, `c` calls cursor.
 # Otherwise, `c` calls `code`.
 if command -v cursor > /dev/null 2>&1; then
@@ -174,3 +173,13 @@ if command -v cursor > /dev/null 2>&1; then
 else
 	alias c='code'
 fi
+
+# I'm used to Windows now lol
+alias start='open'
+
+# Salesforce: Add extra Node certs for ZScaler.
+# See https://git.soma.salesforce.com/nodeforce/nexus-npms (Note: I've only used the cert from them; not the full install).
+#
+# Place it in ~/.node_certs/npm-sfdc-certs.pem
+# Needs to be an absolute path or this fails.
+NODE_EXTRA_CA_CERTS=$(realpath ~/.node_certs/npm-sfdc-certs.pem)
