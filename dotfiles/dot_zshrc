@@ -41,6 +41,11 @@ else
 	add_to_path $HOME/.rbenv/bin
 fi
 
+# If Go is installed, add it to the path.
+if command -v go > /dev/null 2>&1; then
+	add_to_path $(go env GOPATH)/bin
+fi
+
 # Oh, my ZSH!
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="citelao"
