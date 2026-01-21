@@ -178,8 +178,5 @@ fi
 alias start='open'
 
 # Salesforce: Add extra Node certs for ZScaler.
-# See https://git.soma.salesforce.com/nodeforce/nexus-npms (Note: I've only used the cert from them; not the full install).
-#
-# Place it in ~/.node_certs/npm-sfdc-certs.pem
-# Needs to be an absolute path or this fails.
-NODE_EXTRA_CA_CERTS=$(realpath ~/.node_certs/npm-sfdc-certs.pem)
+# See https://git.soma.salesforce.com/nodeforce/nexus-npms	
+export NODE_EXTRA_CA_CERTS="$HOME/.config/nexus-npm/npm-sfdc-certs.pem"
