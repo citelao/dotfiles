@@ -15,10 +15,15 @@ function statusicon {
 function beep_if_last_command_slow {
 	# https://askubuntu.com/a/407761
 	local lastCommand=$(fc -l -D | tail -n1)
-	local lastCommandId=$(echo $lastCommand | awk '{print $1}')
-	local seconds=$(echo $lastCommand | awk '{print $2}' | awk -F: '{ print ($1 * 60) + $2 }')
 
-	# If `-ne`: beep_if_last_command_slow:6: bad math expression: operator expected at `0' sometimes.
+	# Without `firstLineOfLastCommand`, if a command has trailing whitespace,
+	# lastCommand will have trailing newlines which will parse incorrectly:
+	#
+	# > beep_if_last_command_slow:7: bad math expression: operator expected at `0\n0'
+	local firstLineOfLastCommand=$(printf '%s\n' "$lastCommand" | head -n1)
+	local lastCommandId=$(printf '%s\n' "$firstLineOfLastCommand" | awk '{print $1}')
+	local seconds=$(printf '%s\n' "$firstLine" | awk '{print $2}' | awk -F: '{ print ($1 * 60) + $2 }' | head -n1)
+
 	if [[ $seconds -gt 1 && $lastCommandId != $BESTO_LAST_COMMAND_ID ]]; then
 		# Play a nice sound! & remember that we did so for this command.
 		(afplay /System/Library/Sounds/Frog.aiff -q 1 &) > /dev/null
