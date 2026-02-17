@@ -148,7 +148,7 @@ setopt no_hist_ignore_space
 
 
 if [[ "$(uname)" == "Darwin" ]]; then
-	export NVM_DIR="/Users/citelao/.nvm"
+	export NVM_DIR="$HOME/.nvm"
 	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 	# Don't update before every install.
