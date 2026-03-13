@@ -9,12 +9,12 @@
 
 ## PRs
 
-- Format: "Today, X is the problem. This change does Y."
-- Sections: What changed (bullets), How tested (bullets).
-- Don't pre-check test boxes — only check what's actually been validated.
-- **Claude Code warning**: Include a note block at the top of the PR body when generated via Claude Code:
+- **Summary format** (plain English, at top): "Today, X bad thing happens because Y. This change fixes X by doing Z."
+- **Claude Code note** (below summary):
   ```markdown
   > [!NOTE]
   > Generated via Claude Code.
   ```
+- **Sections**: "What Changed" (bullets), "Test Plan" (bullets with checkboxes).
+- Don't pre-check test boxes — only check what's actually been validated.
 
