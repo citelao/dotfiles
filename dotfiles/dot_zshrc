@@ -109,6 +109,17 @@ COMPLETION_WAITING_DOTS="true"
 if [[ "$(uname)" == "Darwin" ]]; then
 	# zsh-syntax-highlighting
 	plugins=(git brew macos)
+
+	# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fzf/README.md
+	plugins+=(fzf)
+
+	# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/zoxide/README.md
+	plugins+=(zoxide)
+
+	# Cursor auto-completed this and it seems intriguing.
+	# https://github.com/Aloxaf/fzf-tab
+	# plugins+=(fzf-tab)
+
 else
 	# zsh-syntax-highlighting
 	plugins=(git)
