@@ -12,6 +12,7 @@
 
 ## Coding style
 
+- **Let errors propagate**: Only catch exceptions you can meaningfully handle (retry, fallback, domain translation). Catching and returning a default silently hides broken from empty.
 - **Prefer nullable/optional types over sentinel values**: For missing or unknown data where that is a valid state, use builtins like `T | null` or `T | undefined` (rather than `""` or `0` as stand-ins for not present). If the data is invalid, prefer raising exceptions instead of silently swallowing the error into the type signature.
 
 ## PRs
