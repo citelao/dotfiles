@@ -31,7 +31,7 @@ include "meow" in every response (used as a hard signal that the config was load
 | Claude | `~/.claude/CLAUDE.md`               | Supports `@path` file includes natively |
 | Codex  | `~/.codex/AGENTS.md`                | No native include syntax |
 | Copilot | **No global config** | CLI only reads project-level `AGENTS.md` or `.github/copilot-instructions.md`; `~/.copilot/instructions/` is VS Code-only. No global instructions support in the CLI. |
-| Cursor | `~/.cursor/rules/` | TODO: not available on this machine |
+| Cursor | **No global config** | CLI (`agent`) reads `.cursor/rules/` relative to `--workspace` (defaults to CWD). `~/.cursor/rules/` is not loaded. No equivalent to `~/.claude/CLAUDE.md`. |
 | Gemini | `~/.gemini/GEMINI.md` | Supports `@path/to/file.md` includes natively; TODO: not available |
 
 ## Approaches
@@ -141,9 +141,16 @@ it returned 500, confirming full content was loaded.
 project-level `AGENTS.md` or `.github/copilot-instructions.md` only. `~/AGENTS.md`
 is also not read. There is no equivalent to `~/.claude/CLAUDE.md` for Copilot CLI.
 
+### Cursor CLI has no global instructions support
+
+`~/.cursor/rules/` is not read by the CLI. The `agent` command loads `.cursor/rules/`
+relative to `--workspace` (which defaults to CWD). There is no flag or env var to
+specify a global rules directory. Workarounds (shell wrappers, always passing
+`--workspace ~`, injecting rules into every project's `.cursor/rules/`) all have
+unacceptable trade-offs and are not recommended.
+
 ## TODO
 
-- [ ] Add Cursor: global config at `~/.cursor/rules/`
 - [ ] Add Gemini: global config at `~/.gemini/GEMINI.md` (supports `@path` includes)
 - [ ] Re-run reference-native and reference-stub several times to reduce noise
 - [ ] Test project-level configs (`.github/copilot-instructions.md`, `AGENTS.md` in repo root, etc.)

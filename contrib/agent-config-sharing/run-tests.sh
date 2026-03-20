@@ -12,10 +12,11 @@
 #            https://docs.anthropic.com/en/docs/claude-code/memory
 #   Codex:   ~/.codex/AGENTS.md
 #            https://docs.openai.com/codex-cli/memory (see "Global scope" section)
+#   Cursor:  No global config for the CLI. `agent` reads `.cursor/rules/` relative to
+#            --workspace (CWD by default). ~/.cursor/rules/ is not loaded. Skipped.
+#            https://docs.cursor.com/context/rules
 #   Gemini:  ~/.gemini/GEMINI.md  (TODO — not yet tested on this machine)
 #            https://developers.google.com/gemini/docs/cli/memory
-#   Cursor:  ~/.cursor/rules/     (TODO — not yet tested on this machine)
-#            https://docs.cursor.com/context/rules
 #
 # Usage: ./run-tests.sh [--dry-run] [--no-deploy] [duplicate|symlink|reference-native|reference-stub]
 #   With no approach argument, runs all four approaches sequentially.
