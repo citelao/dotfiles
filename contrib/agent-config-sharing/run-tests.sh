@@ -123,6 +123,14 @@ run_codex() {
   fi
 }
 
+run_copilot() {
+  local prompt="$1" out="$2"
+  # --allow-all-tools + --silent: text-only responses, suppress stats output
+  if ! (cd "$WORK_DIR" && copilot -p "$prompt" --allow-all-tools --silent 2>/dev/null) > "$out"; then
+    echo "    WARNING: copilot exited non-zero for prompt: $prompt" >&2
+  fi
+}
+
 # TODO: add cursor once available on this machine
 #   Global config: ~/.cursor/rules/
 #   run_cursor() { ... }
@@ -142,6 +150,8 @@ run_prompts() {
     run_claude "$prompt" "$out_dir/claude-$name.txt"
     echo "    codex / $name"
     run_codex "$prompt" "$out_dir/codex-$name.txt"
+    echo "    copilot / $name"
+    run_copilot "$prompt" "$out_dir/copilot-$name.txt"
   done
 }
 
@@ -149,52 +159,67 @@ run_prompts() {
 # Deploy strategies
 # ---------------------------------------------------------------------------
 
+copilot_instructions_file() {
+  # Copilot reads a directory of .md files: ~/.copilot/instructions/
+  # https://code.visualstudio.com/docs/copilot/customization/custom-instructions
+  echo ~/.copilot/instructions/shared-rules.md
+}
+
 deploy_duplicate() {
-  # Each tool gets its own full copy of the rules
   cp "$SHARED" ~/.claude/CLAUDE.md
   cp "$SHARED" ~/.codex/AGENTS.md
+  mkdir -p ~/.copilot/instructions
+  cp "$SHARED" "$(copilot_instructions_file)"
   # TODO cursor: cp "$SHARED" ~/.cursor/rules/shared.mdc
   # TODO gemini: cp "$SHARED" ~/.gemini/GEMINI.md
 }
 
 deploy_symlink() {
-  # Each tool's config is a symlink to a single canonical file
   local target="$SCRIPT_DIR/shared/rules.md"
   ln -sf "$target" ~/.claude/CLAUDE.md
   ln -sf "$target" ~/.codex/AGENTS.md
+  mkdir -p ~/.copilot/instructions
+  ln -sf "$target" "$(copilot_instructions_file)"
   # TODO cursor: ln -sf "$target" ~/.cursor/rules/shared.mdc
   # TODO gemini: ln -sf "$target" ~/.gemini/GEMINI.md
 }
 
 deploy_reference-native() {
-  # @path syntax: tool natively reads and inlines the referenced file.
-  # Supported by: Claude, Gemini (natively), likely Cursor.
-  # Not supported by: Codex — falls back to stub behavior for comparison.
+  # Claude supports @path includes natively.
+  # Copilot and Codex have no native include syntax — give them the prose stub.
+  # TODO gemini: supports @path/to/file.md natively
+  #              https://developers.google.com/gemini/docs/cli/memory#import-files
+  # TODO cursor: likely supports @file reference syntax
   cat > ~/.claude/CLAUDE.md <<EOF
 @$SCRIPT_DIR/shared/rules.md
 EOF
-  # Codex has no native @include syntax, so give it the stub for comparison
   cat > ~/.codex/AGENTS.md <<EOF
 # Agent Config
 
 See rules in: $SCRIPT_DIR/shared/rules.md
 EOF
-  # TODO cursor: @file reference syntax in ~/.cursor/rules/ (likely supported)
-  # TODO gemini: @path/to/file.md import syntax (supported natively)
-  #              https://developers.google.com/gemini/docs/cli/memory#import-files
+  mkdir -p ~/.copilot/instructions
+  cat > "$(copilot_instructions_file)" <<EOF
+# Agent Config
+
+See rules in: $SCRIPT_DIR/shared/rules.md
+EOF
 }
 
 deploy_reference-stub() {
-  # Prose-only path mention — no native include syntax. Tests whether the agent
-  # will follow a plain-text instruction to consult another file.
-  # Expected to fail for all tools since agents don't read arbitrary file paths
-  # from their config, but useful as a baseline/control.
+  # Prose-only path mention for all tools — control/baseline.
   cat > ~/.claude/CLAUDE.md <<EOF
 # Agent Config
 
 See rules in: $SCRIPT_DIR/shared/rules.md
 EOF
   cat > ~/.codex/AGENTS.md <<EOF
+# Agent Config
+
+See rules in: $SCRIPT_DIR/shared/rules.md
+EOF
+  mkdir -p ~/.copilot/instructions
+  cat > "$(copilot_instructions_file)" <<EOF
 # Agent Config
 
 See rules in: $SCRIPT_DIR/shared/rules.md
@@ -219,6 +244,7 @@ for approach in "${APPROACHES[@]}"; do
   echo "  backing up existing global configs..."
   backup ~/.claude/CLAUDE.md
   backup ~/.codex/AGENTS.md
+  backup "$(copilot_instructions_file)"
   # TODO cursor: backup ~/.cursor/rules/shared.mdc
   # TODO gemini: backup ~/.gemini/GEMINI.md
 
@@ -243,6 +269,7 @@ for approach in "${APPROACHES[@]}"; do
   echo "  restoring..."
   restore ~/.claude/CLAUDE.md
   restore ~/.codex/AGENTS.md
+  restore "$(copilot_instructions_file)"
   # TODO cursor: restore ~/.cursor/rules/shared.mdc
   # TODO gemini: restore ~/.gemini/GEMINI.md
   reset_tracked_backups

@@ -1,0 +1,13 @@
+Today, consumers cannot perform division through the math utility library because it does not expose a divide helper. This change fixes that gap by adding a `divide` function to the library.
+
+**What Changed**
+- Added a `divide` function to the math utility library.
+- Exposed the new helper through the library's public API.
+- Added or updated documentation/examples for using `divide`.
+- Added tests covering standard division behavior and edge cases such as division by zero, meow.
+
+**Test Plan**
+- [ ] Run unit tests for the math utility library.
+- [ ] Verify `divide(6, 3)` returns `2`.
+- [ ] Verify fractional results are handled correctly.
+- [ ] Verify division by zero behavior matches the library's intended contract.

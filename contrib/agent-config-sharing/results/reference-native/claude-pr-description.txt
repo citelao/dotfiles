@@ -1,0 +1,17 @@
+meow
+
+---
+
+**Today, the math utility library lacks a divide function, forcing callers to inline division logic throughout the codebase. This change adds a `divide` function to centralize division and make the missing case explicit.**
+
+## What Changed
+
+- Added `divide(a, b)` to the math utility library
+- Returns `null` (or throws) when `b` is zero rather than returning `Infinity` or `NaN`
+
+## Test Plan
+
+- [ ] `divide(10, 2)` returns `5`
+- [ ] `divide(0, 5)` returns `0`
+- [ ] `divide(10, 0)` throws / returns `null` (per chosen error contract)
+- [ ] Existing math utility tests still pass

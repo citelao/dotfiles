@@ -1,0 +1,24 @@
+Here's a PR description for adding a divide function to a math utility library:
+
+---
+
+**Add `divide` function to math utility library**
+
+## Summary
+
+- Adds a new `divide(a, b)` function to the math utility library
+- Returns the quotient of two numbers
+- Throws an error (or returns `NaN`/`Infinity`) on division by zero
+
+## Changes
+
+- Implemented `divide` alongside existing math utilities (`add`, `subtract`, `multiply`)
+- Added unit tests covering: normal division, negative numbers, floating-point inputs, and division by zero
+
+## Test Plan
+
+- [ ] All existing math utility tests still pass
+- [ ] `divide(10, 2)` returns `5`
+- [ ] `divide(7, 3)` returns approximately `2.333...`
+- [ ] `divide(0, 5)` returns `0`
+- [ ] `divide(5, 0)` throws / returns expected sentinel value per project convention

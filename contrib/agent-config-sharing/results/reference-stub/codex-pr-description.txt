@@ -1,0 +1,15 @@
+meow
+
+Today, callers cannot perform division through the math utility library because it only exposes existing basic operations. This change fixes that gap by adding a `divide` function to the library.
+
+**What Changed**
+- Added a new `divide` function to the math utility library.
+- Exposed the new function through the library’s public API.
+- Documented expected division behavior for consumers.
+- Added tests covering standard division cases and divide-by-zero handling, if applicable.
+
+**Test Plan**
+- [ ] Unit tests for `divide` return correct results for normal inputs
+- [ ] Unit tests verify behavior for negative numbers and decimals
+- [ ] Unit tests verify divide-by-zero behavior
+- [ ] Verified existing math utility tests still pass
