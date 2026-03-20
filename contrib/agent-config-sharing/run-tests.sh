@@ -46,12 +46,6 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ "$NO_DEPLOY" -eq 1 ]]; then
-  echo "=== --no-deploy: running against current configs ==="
-  run_prompts "current"
-  exit 0
-fi
-
 PROMPTS=(
   "Write a one-sentence greeting."
   "Write a short TypeScript function that divides two numbers."
@@ -211,6 +205,12 @@ EOF
 # ---------------------------------------------------------------------------
 # Main loop — one approach at a time with backup/restore
 # ---------------------------------------------------------------------------
+
+if [[ "$NO_DEPLOY" -eq 1 ]]; then
+  echo "=== --no-deploy: running against current configs ==="
+  run_prompts "current"
+  exit 0
+fi
 
 for approach in "${APPROACHES[@]}"; do
   echo ""
