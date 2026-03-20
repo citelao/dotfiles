@@ -1,0 +1,20 @@
+## Add `divide` function to math utility library
+
+### Summary
+Adds a `divide(a, b)` function to the math utility library, completing the set of basic arithmetic operations alongside `add`, `subtract`, and `multiply`.
+
+### Changes
+- Implements `divide(a, b)` returning the quotient of two numbers
+- Throws a `DivisionByZeroError` (or equivalent) when `b` is `0`
+- Adds unit tests covering normal division, floating-point results, negative numbers, and the divide-by-zero edge case
+
+### Motivation
+The library lacked a division operation, requiring callers to inline raw `/` expressions without consistent error handling for zero divisors.
+
+### Testing
+All existing tests pass. New tests cover:
+- `divide(10, 2)` → `5`
+- `divide(7, 2)` → `3.5`
+- `divide(-6, 3)` → `-2`
+- `divide(5, 0)` → throws `DivisionByZeroError`
+

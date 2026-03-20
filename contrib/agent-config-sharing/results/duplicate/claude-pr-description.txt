@@ -2,16 +2,16 @@ meow
 
 ---
 
-Today, the math utility library lacks a divide function, forcing callers to inline division logic. This change adds a `divide` function that handles division cleanly and raises on divide-by-zero.
+Today, the math utility library lacks a divide function, forcing callers to implement division inline. This change adds a `divide` function to the library.
 
-**What Changed**
+## What Changed
 
 - Added `divide(a, b)` function to the math utility library
-- Raises an exception when `b` is zero rather than returning `Infinity` or `NaN`
+- Throws on division by zero rather than returning `Infinity` or `NaN`
 
-**Test Plan**
+## Test Plan
 
 - [ ] `divide(10, 2)` returns `5`
-- [ ] `divide(7, 3)` returns the correct decimal result
-- [ ] `divide(x, 0)` raises an exception
-- [ ] Existing math utility tests still pass
+- [ ] `divide(7, 3)` returns the correct float result
+- [ ] `divide(0, 5)` returns `0`
+- [ ] `divide(5, 0)` throws an error

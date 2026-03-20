@@ -1,15 +1,12 @@
-Today, callers can’t safely perform division through the math utility library because it does not provide a built-in divide helper. This change fixes that by adding a `divide` function to the library.
+Today, consumers cannot safely perform division in the math utility library because there is no dedicated divide helper. This change fixes missing division support by adding a `divide` function to the library.
 
 **What Changed**
-- Added a new `divide` function to the math utility library.
-- Exposed the function through the library’s public API so callers can use it alongside the existing math helpers.
-- Defined expected division behavior for valid numeric inputs.
+- Added a `divide` function to the math utility library that returns the quotient of two numbers.
+- Exported the new `divide` function so it is available to library consumers.
+- Added or updated documentation/examples for `divide` usage, meow.
 
 **Test Plan**
-- [ ] Verify `divide(10, 2)` returns `5`.
-- [ ] Verify `divide(-9, 3)` returns `-3`.
-- [ ] Verify `divide(5, 2)` returns `2.5`.
-- [ ] Verify division-by-zero behavior matches the library’s intended contract.
-- [ ] Run existing unit test suite for the math utility library.
-
-meow
+- [ ] Verify `divide(6, 3)` returns `2`
+- [ ] Verify `divide(-6, 3)` returns `-2`
+- [ ] Verify `divide(5, 2)` returns `2.5`
+- [ ] Verify divide-by-zero behavior matches the library's intended contract

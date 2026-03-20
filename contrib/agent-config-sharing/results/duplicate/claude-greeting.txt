@@ -1,1 +1,3 @@
-meow Hello! How can I help you today?
+meow
+
+Hello! Welcome — hope you're having a great day.

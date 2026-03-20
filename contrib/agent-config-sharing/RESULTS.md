@@ -10,7 +10,7 @@ include "meow" in every response (used as a hard signal that the config was load
 |--------|-------------------------------------|-------|
 | Claude | `~/.claude/CLAUDE.md`               | Supports `@path` file includes natively |
 | Codex  | `~/.codex/AGENTS.md`                | No native include syntax |
-| Copilot | `~/.copilot/instructions/` (dir of `.md` files) | Also reads `CLAUDE.md` (home, `.claude/`, workspace root) and `.github/copilot-instructions.md`; deploying to `~/.claude/CLAUDE.md` may cover both Claude and Copilot |
+| Copilot | **No global config** | CLI only reads project-level `AGENTS.md` or `.github/copilot-instructions.md`; `~/.copilot/instructions/` is VS Code-only. No global instructions support in the CLI. |
 | Cursor | `~/.cursor/rules/` | TODO: not available on this machine |
 | Gemini | `~/.gemini/GEMINI.md` | Supports `@path/to/file.md` includes natively; TODO: not available |
 
@@ -87,10 +87,23 @@ Claude's coding/PR scores without config are likely from training data, not the 
   partially follow prose references — needs more runs to confirm.
 - **reference-stub** is the control — Claude doesn't follow it. Codex results are ambiguous.
 
+### duplicate (copilot)
+
+| Tool    | Prompt         | Meow | Coding (0-3) | PR Format (0-3) | Notes |
+|---------|----------------|------|--------------|-----------------|-------|
+| copilot | greeting       | ❌   | —            | —               | `~/.copilot/instructions/` not read by CLI |
+| copilot | divide-fn      | ❌   | 3            | —               | Coding style likely from training |
+| copilot | pr-description | ❌   | —            | 2               | PR format partially correct (training) |
+
+Copilot CLI has **no global instructions support**. `~/.copilot/instructions/` is VS Code-only.
+The CLI only reads project-level `AGENTS.md` or `.github/copilot-instructions.md`.
+Tested `~/AGENTS.md` — also not read. Copilot cannot be configured globally via CLI.
+
 ## TODO
 
-- [ ] Add Copilot: global config at `~/.copilot/instructions/` (dir of `.md` files)
 - [ ] Add Cursor: global config at `~/.cursor/rules/`
 - [ ] Add Gemini: global config at `~/.gemini/GEMINI.md` (supports `@path` includes)
 - [ ] Re-run reference-native and reference-stub several times to reduce noise
-- [ ] Test project-level configs (`.github/copilot-instructions.md`, `CLAUDE.md` in repo root, etc.)
+- [ ] Test project-level configs (`.github/copilot-instructions.md`, `AGENTS.md` in repo root, etc.)
+- [ ] Consider whether to keep Copilot in run-tests.sh given no global config support,
+      or repurpose it as a project-level config test
