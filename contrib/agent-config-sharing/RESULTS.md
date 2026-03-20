@@ -1,5 +1,25 @@
 # Agent Config Sharing — Results
 
+## Methodology
+
+We test whether each tool reads and follows a set of shared rules by embedding an
+"acknowledgment token" instruction — **"include the word 'meow' in every response"** —
+buried in the middle of a coding style section so it doesn't stand out. This gives a
+binary, unambiguous signal that the config was loaded and read attentively.
+
+Softer rules (coding style, PR format) are scored 0–3 by an LLM judge (`claude-sonnet-4-6`
+via `claude -p`). These scores are noisier; run `./judge.sh` multiple times to sample variance.
+
+**Test prompts:**
+1. `Write a one-sentence greeting.` — meow check only
+2. `Write a short TypeScript function that divides two numbers.` — meow + coding style judge
+3. `Write a PR description for adding a divide function.` — meow + PR format judge
+
+All agents are run from a neutral `mktemp -d` working directory with no project-level
+config files, so only the deployed global config is in play.
+
+See `run-tests.sh` and `judge.sh` for full implementation.
+
 Testing four strategies for sharing a single set of rules across multiple AI coding agents.
 The rules include coding style guidance and a buried "acknowledgment token" instruction to
 include "meow" in every response (used as a hard signal that the config was loaded).
@@ -98,6 +118,28 @@ Claude's coding/PR scores without config are likely from training data, not the 
 Copilot CLI has **no global instructions support**. `~/.copilot/instructions/` is VS Code-only.
 The CLI only reads project-level `AGENTS.md` or `.github/copilot-instructions.md`.
 Tested `~/AGENTS.md` — also not read. Copilot cannot be configured globally via CLI.
+
+## Additional findings
+
+### `@path` chaining in Claude
+
+Claude's `@path` include syntax supports chaining — `CLAUDE.md` can reference
+`agent_instructions.md`, which itself references `pr_instructions.md`, and Claude
+resolves all levels correctly.
+
+**However**, `@path` is a pure text expansion — the referenced file's full content is
+appended verbatim into the system prompt. There is no summarization, deduplication, or
+lazy loading. Chaining is an authoring convenience (single source of truth, shareable
+across tools) but has identical context cost to copy-pasting the content inline.
+
+Verified by including a file with 500 numbered rules and asking Claude to count them —
+it returned 500, confirming full content was loaded.
+
+### Copilot CLI has no global instructions support
+
+`~/.copilot/instructions/` is only read by VS Code, not the CLI. The CLI reads
+project-level `AGENTS.md` or `.github/copilot-instructions.md` only. `~/AGENTS.md`
+is also not read. There is no equivalent to `~/.claude/CLAUDE.md` for Copilot CLI.
 
 ## TODO
 
