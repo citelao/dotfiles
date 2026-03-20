@@ -1,0 +1,18 @@
+**Summary**
+
+Adds a `divide` function to the math utility library to support division alongside the existing arithmetic helpers.
+
+**What Changed**
+
+- Introduced `divide(a, b)` in the math utility library
+- Exposed the new function through the library’s public API
+- Added tests covering expected division behavior
+
+**Why**
+
+The library already provides basic arithmetic helpers, and division is a natural addition to complete that set. This change makes common math operations available through a consistent utility interface.
+
+**Notes**
+
+- Assumes standard division behavior for valid numeric inputs
+- If division-by-zero handling was added, call that out explicitly in the PR with the chosen behavior (`throw`, `Infinity`, `null`, etc.)

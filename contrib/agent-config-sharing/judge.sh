@@ -1,22 +1,33 @@
 #!/usr/bin/env bash
 # judge.sh — evaluate agent responses from run-tests.sh
 #
-# Usage: ./judge.sh [--runs N]
-#   --runs N   Number of times to re-judge each soft response (default: 3)
+# Usage: ./judge.sh [--runs N] <results-dir>
+#   --runs N       Number of times to re-judge each soft response (default: 3)
+#   results-dir    Directory containing claude-*.txt / codex-*.txt files
+#                  e.g. ./results/current or ./results/duplicate
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-RESULTS_DIR="$SCRIPT_DIR/results"
 RUNS=3
+RESULTS_DIR=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --runs) RUNS="$2"; shift 2 ;;
-    *) echo "Unknown arg: $1"; exit 1 ;;
+    *)      RESULTS_DIR="$1"; shift ;;
   esac
 done
 
-APPROACHES=(duplicate symlink reference)
+if [[ -z "$RESULTS_DIR" ]]; then
+  echo "Usage: ./judge.sh [--runs N] <results-dir>"
+  echo "  e.g. ./judge.sh results/current"
+  exit 1
+fi
+if [[ ! -d "$RESULTS_DIR" ]]; then
+  echo "Directory not found: $RESULTS_DIR"
+  exit 1
+fi
+
 # TODO: add cursor and gemini once available on this machine
 TOOLS=(claude codex)
 PROMPT_NAMES=(greeting divide-fn pr-description)
@@ -97,38 +108,35 @@ judge_multi() {
 # ---------------------------------------------------------------------------
 # Main scoring loop
 # ---------------------------------------------------------------------------
-printf "\n%-12s %-8s %-14s %-8s %-16s %-16s\n" \
-  "APPROACH" "TOOL" "PROMPT" "MEOW" "CODING (0-3)" "PR FORMAT (0-3)"
-printf '%0.s-' {1..80}; echo
+printf "\n%-8s %-14s %-8s %-16s %-16s\n" \
+  "TOOL" "PROMPT" "MEOW" "CODING (0-3)" "PR FORMAT (0-3)"
+printf '%0.s-' {1..64}; echo
 
-for approach in "${APPROACHES[@]}"; do
-  for tool in "${TOOLS[@]}"; do
-    for name in "${PROMPT_NAMES[@]}"; do
-      file="$RESULTS_DIR/$approach/$tool-$name.txt"
-      if [[ ! -f "$file" ]]; then
-        printf "%-12s %-8s %-14s %-8s %-16s %-16s\n" \
-          "$approach" "$tool" "$name" "MISSING" "-" "-"
-        continue
-      fi
+for tool in "${TOOLS[@]}"; do
+  for name in "${PROMPT_NAMES[@]}"; do
+    file="$RESULTS_DIR/$tool-$name.txt"
+    if [[ ! -f "$file" ]]; then
+      printf "%-8s %-14s %-8s %-16s %-16s\n" \
+        "$tool" "$name" "MISSING" "-" "-"
+      continue
+    fi
 
-      response="$(cat "$file")"
-      meow=$(check_meow "$file")
+    response="$(cat "$file")"
+    meow=$(check_meow "$file")
 
-      # Only run soft judges for relevant prompts
-      if [[ "$name" == "divide-fn" ]]; then
-        coding=$(judge_multi "$JUDGE_CODING_STYLE" "$response")
-        pr="-"
-      elif [[ "$name" == "pr-description" ]]; then
-        coding="-"
-        pr=$(judge_multi "$JUDGE_PR_FORMAT" "$response")
-      else
-        coding="-"
-        pr="-"
-      fi
+    if [[ "$name" == "divide-fn" ]]; then
+      coding=$(judge_multi "$JUDGE_CODING_STYLE" "$response")
+      pr="-"
+    elif [[ "$name" == "pr-description" ]]; then
+      coding="-"
+      pr=$(judge_multi "$JUDGE_PR_FORMAT" "$response")
+    else
+      coding="-"
+      pr="-"
+    fi
 
-      printf "%-12s %-8s %-14s %-8s %-16s %-16s\n" \
-        "$approach" "$tool" "$name" "$meow" "$coding" "$pr"
-    done
+    printf "%-8s %-14s %-8s %-16s %-16s\n" \
+      "$tool" "$name" "$meow" "$coding" "$pr"
   done
 done
 

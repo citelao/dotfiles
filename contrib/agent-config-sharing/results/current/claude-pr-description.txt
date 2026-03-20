@@ -1,0 +1,21 @@
+Today, the math utility library lacks a divide function. This change adds one.
+
+---
+
+**Add `divide` to math utility library**
+
+Today, users of the math utility library have no built-in way to divide two numbers, requiring them to implement division inline. This change fixes that by adding a `divide(a, b)` function to the library.
+
+> [!NOTE]
+> Generated via Claude Code.
+
+## What Changed
+
+- Added `divide(a, b)` function to the math utility library
+- Throws on division by zero rather than returning `Infinity` or `NaN`
+
+## Test Plan
+
+- [ ] `divide(10, 2)` returns `5`
+- [ ] `divide(7, 3)` returns the correct floating-point result
+- [ ] `divide(x, 0)` throws an error
