@@ -1,0 +1,7 @@
+{{- if eq .chezmoi.os "darwin" -}}
+[chezmoi]
+    sourceDir = "{{ .chezmoi.workingTree }}/dotfiles/mac"
+{{- else if eq .chezmoi.os "windows" -}}
+[chezmoi]
+    sourceDir = "{{ .chezmoi.workingTree }}/dotfiles/windows"
+{{- end -}}
