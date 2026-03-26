@@ -13,6 +13,9 @@ chezmoi apply
 You may also want to install useful tools:
 
 ```bash
+# https://ohmyz.sh/#install
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # https://github.com/junegunn/fzf?tab=readme-ov-file#using-homebrew
 brew install fzf
 
