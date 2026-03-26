@@ -27,6 +27,9 @@ brew install fzf
 # https://github.com/ajeetdsouza/zoxide
 # https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
 brew install zoxide
+
+# https://github.com/source-foundry/Hack
+brew install --cask font-hack
 ```
 
 ## See also
