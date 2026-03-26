@@ -1,0 +1,4 @@
+#!/bin/bash
+# com.apple.Terminal.plist hash: {{ include (joinPath .chezmoi.homeDir "Library/Preferences/com.apple.Terminal.plist") | sha256sum }}
+
+defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
