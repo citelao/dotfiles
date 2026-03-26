@@ -32,6 +32,14 @@ brew install zoxide
 brew install --cask font-hack
 ```
 
+## Terminal plist workflow
+
+`dotfiles/private_Library/private_Preferences/private_com.apple.Terminal.plist` is tracked as an XML plist so Terminal preference changes diff cleanly in git.
+
+- `chezmoi apply` writes the tracked plist to `~/Library/Preferences/com.apple.Terminal.plist`, and the onchange hook converts it to binary before running `defaults import`.
+- `contrib/terminal-plist.sh export` converts the live `~/Library/Preferences/com.apple.Terminal.plist` back to XML and writes it into the repo.
+- `contrib/terminal-plist.sh import` imports the tracked XML plist into the Terminal defaults domain without a full `chezmoi apply`.
+
 ## See also
 
 https://github.com/citelao/dotfiles2
