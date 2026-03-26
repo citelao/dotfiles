@@ -16,6 +16,11 @@ You may also want to install useful tools:
 # https://ohmyz.sh/#install
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# Github CLI
+# https://cli.github.com
+brew install gh
+# gh auth login
+
 # https://github.com/junegunn/fzf?tab=readme-ov-file#using-homebrew
 brew install fzf
 
