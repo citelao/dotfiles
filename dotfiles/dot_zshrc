@@ -184,9 +184,12 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # export HOMEBREW_NO_INSTALL_CLEANUP=1 # I'm OK with cleaning up unused stuff.
 
 # If cursor is installed, `c` calls cursor.
+# If code-insiders is installed, `c` calls code-insiders.
 # Otherwise, `c` calls `code`.
 if command -v cursor > /dev/null 2>&1; then
 	alias c='cursor'
+elif command -v code-insiders > /dev/null 2>&1; then
+	alias c='code-insiders'
 else
 	alias c='code'
 fi
