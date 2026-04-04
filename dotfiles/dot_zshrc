@@ -201,7 +201,6 @@ alias start='open'
 if command -v python3 > /dev/null 2>&1 && ! command -v python > /dev/null 2>&1; then
 	alias python='python3'
 	alias pip='pip3'
-	export npm_config_python=$(which python3)
 fi
 
 # Salesforce: Add extra Node certs for ZScaler.
