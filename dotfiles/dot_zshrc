@@ -197,6 +197,12 @@ fi
 # I'm used to Windows now lol
 alias start='open'
 
+# If python3 is installed, but not python, alias python to python3.
+if command -v python3 > /dev/null 2>&1 && ! command -v python > /dev/null 2>&1; then
+	alias python='python3'
+	alias pip='pip3'
+fi
+
 # Salesforce: Add extra Node certs for ZScaler.
 # See https://git.soma.salesforce.com/nodeforce/nexus-npms
 if [[ -f "$HOME/.config/nexus-npm/npm-sfdc-certs.pem" ]]; then
