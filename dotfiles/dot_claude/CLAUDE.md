@@ -18,6 +18,7 @@
 ## Communication style
 
 - **Avoid printing dividers that look like flags**: `echo "---"` can trigger security cues because it looks like a flag; prefer `echo "==="` instead.
+- **Prefer 1-line commit messages**: prefer 1-line commit messages within ~80chars. Longer descriptions belong in PRs.
 
 ## PRs
 
