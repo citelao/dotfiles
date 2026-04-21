@@ -17,8 +17,12 @@
 
 ## Communication style
 
-- **Avoid printing dividers that look like flags**: `echo "---"` can trigger security cues because it looks like a flag; prefer `echo "==="` instead.
 - **Prefer 1-line commit messages**: prefer 1-line commit messages within ~80chars. Longer descriptions belong in PRs.
+
+## Tool call tips
+
+- **Avoid printing dividers that look like flags**: `echo "---"` can trigger security cues because it looks like a flag; prefer `echo "==="` instead.
+- **Avoid using `git -C` for the current repo**: this makes it hard to auto-approve commands. Be aware of which repo you are in, and use standard `git` commands for the current repo.
 
 ## PRs
 
