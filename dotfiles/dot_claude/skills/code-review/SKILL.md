@@ -1,7 +1,9 @@
 ---
 name: code-review
-decription: Guidelines for reviewing & auditing large changes of code and PRs
+decription: Guidelines for reviewing & auditing large code changes and PRs
 ---
+
+Review large code changes and PRs.
 
 ## When to use
 
