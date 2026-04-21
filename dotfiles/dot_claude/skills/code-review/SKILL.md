@@ -32,8 +32,14 @@ Focus on these critical areas:
 * Focus on the most critical issues first.
 * Preface nitpicks & opinions with `Nit:`.
 
-### PR comments
+### Next steps: fixing issues
+
+* If asked, fix issues as requested.
+* Work in chunks: fix issues in auditable commits.
+* Don't do anything unless explicitly requested.
+
+### Next steps: PR comments
 
 * Offer to post specific review comments to the PR with `gh`.
 * Ensure all comments include the trailing `(🤖 via Claude Code)`.
-* Don't do this unless explicitly requested.
+* Don't do anything unless explicitly requested.
