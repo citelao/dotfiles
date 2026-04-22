@@ -5,10 +5,8 @@
 ## Workflow
 
 - **Fix errors, don't remove validation**: Never remove tests, CI checks, or type validation to make errors go away. Fix the underlying issue instead.
-- **Incremental commits**: Work in small, logical extract+wire+delete chunks. Don't commit unused code — every commit should be self-contained and functional.
+- **Clear, useful, small commits**: Work in small, chunks that deliver user-facing changes. Each commit should meaningfully affect the product in some meaningful way; don't check in unused code.
 - **Clean git tree**: I review diffs in my editor. Summarize what's in each chunk rather than dumping large diffs in the terminal. Don't create files you don't expect to commit yet — keep the working tree clean.
-- **Avoid folder-structure docs/comments**: I generally dislike documentation or comments that describe folder structure, because they become obsolete quickly and usually are not kept up to date.
-- **Rebase workflow**: When a base branch has been merged to main, use `git rebase --onto origin/main <old-base-tip> <branch>` to cleanly rebase without conflicts from the merged base.
 
 ## Coding style
 
@@ -18,6 +16,7 @@
 ## Communication style
 
 - **Prefer 1-line commit messages**: prefer 1-line commit messages within ~80chars. Longer descriptions belong in PRs.
+- **Avoid folder-structure docs/comments**: I generally dislike documentation or comments that describe folder structure, because they become obsolete quickly and usually are not kept up to date.
 
 ## Tool call tips
 
