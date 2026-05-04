@@ -1,3 +1,6 @@
+# Profile
+zmodload zsh/zprof
+
 # Path!
 # add_to_path new/path/thing
 function add_to_path()
@@ -120,6 +123,22 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	# https://github.com/Aloxaf/fzf-tab
 	# plugins+=(fzf-tab)
 
+	# NVM is slow to load.
+	# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
+	# https://varun.ch/posts/slow-nvm/
+	# https://github.com/nvm-sh/nvm/issues/2724
+	# https://github.com/lukechilds/zsh-nvm
+	# https://github.com/nvm-sh/nvm/issues/2334
+	#
+	# export NVM_DIR="$HOME/.nvm"
+	# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+	# So load NVM lazily instead.
+	plugins+=(nvm)
+	zstyle ':omz:plugins:nvm' lazy yes
+	# Extra commands that should load nvm
+	# zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ...
+
 else
 	# zsh-syntax-highlighting
 	plugins=(git)
@@ -159,9 +178,6 @@ setopt no_hist_ignore_space
 
 
 if [[ "$(uname)" == "Darwin" ]]; then
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 	# Don't update before every install.
 	export HOMEBREW_NO_AUTO_UPDATE=1
 fi
@@ -214,3 +230,6 @@ SLACK_WEBAPP_ARTIFACTORY="$HOME/.slack_webapp_artifactory"
 if [[ -f "$SLACK_WEBAPP_ARTIFACTORY" ]]; then
 	source "$SLACK_WEBAPP_ARTIFACTORY"
 fi
+
+# Profiling
+zprof
