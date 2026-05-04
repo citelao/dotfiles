@@ -1,5 +1,5 @@
-# Profile
-zmodload zsh/zprof
+# Uncomment to profile. (see bottom)
+# zmodload zsh/zprof
 
 # Path!
 # add_to_path new/path/thing
@@ -231,5 +231,5 @@ if [[ -f "$SLACK_WEBAPP_ARTIFACTORY" ]]; then
 	source "$SLACK_WEBAPP_ARTIFACTORY"
 fi
 
-# Profiling
-zprof
+# Uncomment to profile. (see top)
+# zprof
