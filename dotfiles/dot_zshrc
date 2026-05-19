@@ -137,7 +137,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	plugins+=(nvm)
 	zstyle ':omz:plugins:nvm' lazy yes
 	# Extra commands that should load nvm
-	# zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ...
+	#
+	# - slack (`run watch` requires Node)
+	# - code & cursor (they like to use Node)
+	zstyle ':omz:plugins:nvm' lazy-cmd slack code cursor
 
 else
 	# zsh-syntax-highlighting
