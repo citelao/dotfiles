@@ -12,6 +12,7 @@
 
 - **Let errors propagate**: Only catch exceptions you can meaningfully handle (retry, fallback, domain translation). Catching and returning a default silently hides broken from empty.
 - **Prefer nullable/optional types over sentinel values**: For missing or unknown data where that is a valid state, use builtins like `T | null` or `T | undefined` (rather than `""` or `0` as stand-ins for not present). If the data is invalid, prefer raising exceptions instead of silently swallowing the error into the type signature.
+- **Parse untrusted data with schemas**: Validate any data your code didn't construct itself (HTTP/WS/IPC payloads, JSON from disk, env-var JSON), preferably with a schema library (e.g. zod, pydantic). Don't substitute ad-hoc runtime checks or unchecked casts for a schema. Derive the type from the schema rather than declaring a parallel one.
 
 ## Communication style
 
