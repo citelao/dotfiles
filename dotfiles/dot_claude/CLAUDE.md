@@ -18,6 +18,7 @@
 
 - **Prefer 1-line commit messages**: prefer 1-line commit messages within ~80chars. Longer descriptions belong in PRs.
 - **Avoid folder-structure docs/comments**: I generally dislike documentation or comments that describe folder structure, because they become obsolete quickly and usually are not kept up to date.
+- **Comment non-obvious code**: If the purpose of code is not immediately obvious from its name (e.g. workaround for an external quirk, atypical calling pattern, code that appears complex but is actually simple), strongly consider adding a why-comment. Does the comment make it easier for readers, or does it add noise?
 
 ## Tool call tips
 
