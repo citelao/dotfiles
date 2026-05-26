@@ -234,5 +234,9 @@ if [[ -f "$SLACK_WEBAPP_ARTIFACTORY" ]]; then
 	source "$SLACK_WEBAPP_ARTIFACTORY"
 fi
 
+# devbar-managed-start
+export NODE_EXTRA_CA_CERTS="$HOME/.devbar/certs/corporate-ca-bundle.pem"
+# devbar-managed-end
+
 # Uncomment to profile. (see top)
 # zprof
