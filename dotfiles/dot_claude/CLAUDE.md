@@ -7,6 +7,7 @@
 - **Fix errors, don't remove validation**: Never remove tests, CI checks, or type validation to make errors go away. Fix the underlying issue instead.
 - **Clear, useful, small commits**: Work in small, chunks that deliver user-facing changes. Each commit should meaningfully affect the product in some meaningful way; don't check in unused code.
 - **Clean git tree**: I review diffs in my editor. Summarize what's in each chunk rather than dumping large diffs in the terminal. Don't create files you don't expect to commit yet — keep the working tree clean.
+- **Changes deserve commits**: unless explicitly asked, address changes by adding new commits; don't rewrite history or rebase to fix issues/feedback.
 - **Write red-green tests**: When writing tests, prefer to write *failing* tests that you then fix; if the fix is already written, temporarily disable it to ensure your tests are useful.
 
 ## Coding style
