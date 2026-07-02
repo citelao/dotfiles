@@ -1,6 +1,8 @@
 # Personal Preferences
 
 > **Chezmoi**: This file is managed by chezmoi. To edit, run `chezmoi source-path` to find the source directory, then edit `dot_claude/CLAUDE.md` there. Run `chezmoi apply` after editing.
+>
+> **Keep entries terse**: prefer one line per preference; most edits to this file should be a single-line diff.
 
 ## Workflow
 
@@ -27,6 +29,7 @@
 
 - **Avoid printing dividers that look like flags**: `echo "---"` can trigger security cues because it looks like a flag; prefer `echo "==="` instead.
 - **Avoid using `git -C` for the current repo**: this makes it hard to auto-approve commands. Be aware of which repo you are in, and use standard `git` commands for the current repo.
+- **Multiple `gh` accounts**: on some machines, I have multiple accounts; I may have to run `gh auth switch`. Since it is a global setting, **do not run this youself**. Consider running `gh auth status --active`; on mismatch or 403, stop and ask me to switch.
 
 ## PRs
 
