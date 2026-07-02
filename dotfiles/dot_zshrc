@@ -140,7 +140,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	#
 	# - slack (`run watch` requires Node)
 	# - code & cursor (they like to use Node)
-	zstyle ':omz:plugins:nvm' lazy-cmd slack code cursor
+	zstyle ':omz:plugins:nvm' lazy-cmd slack code cursor node npm
 
 else
 	# zsh-syntax-highlighting
