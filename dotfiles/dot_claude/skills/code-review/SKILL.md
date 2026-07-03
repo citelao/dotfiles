@@ -26,6 +26,15 @@ Focus on these critical areas:
 * **Is the change tested well?** What critical areas should be tested? What edge-cases exist? Especially consider tests that have low overhead but test critical aspects. Focus on the most complicated & critical aspects of the code, rather than unit tests that exercise obviously-working components (e.g. test business logic edge-cases, not getters and setters).
 * **Is the change well-designed and simple?** Is this the clearest approach? Is this idiomatic code? Does the code match existing paradigms in the codebase?
 
+### Ben-isms
+
+Here are some other things to look for that are more stylistic (and often deserve `Nit` caveats, since this is my opinion):
+
+* **PRs should be incremental** Don't existing comments, debug code, or cleanup unrelated code. Does each line of the PR materially contribute to the stated goals of the PR? If not, that change probably belongs in a separate PR.
+* **Comments should be focused & important** Sometimes---sometimes---long comments are useful. Mostly they are not. Does the comment state something uniquely valuable to readers that is unclear from the code? Rule of thumb: comment size should be inversely proportional to the LOC size of the code.
+* **Comments should be relevant beyond the PR** AI agents tend to write apologetic comments when fixing errors while iterating. These do not belong in the PR. Will this comment make sense without knowing how the PR was iterated?
+* **Named booleans** When writing if conditions, it's often helpful to break complicated Boolean logic into a named var (e.g. `const isNewFeatureEnabled`) instead of inlining the logic. Ask: would this help document the intent of the if condition?
+
 ### Giving feedback
 
 * Concise, specific feedback.
