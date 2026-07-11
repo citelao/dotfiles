@@ -1,6 +1,6 @@
 # Personal Preferences
 
-> **Chezmoi**: This file is managed by chezmoi. To edit, run `chezmoi source-path` to find the source directory, then edit `dot_claude/CLAUDE.md` there. Run `chezmoi apply` after editing.
+> **Chezmoi**: This file is managed by chezmoi. To edit, run `chezmoi source-path` to find the source directory, then edit `dotfiles/.chezmoitemplates/AGENTS` there. Run `chezmoi apply` after editing.
 
 ## Workflow
 
