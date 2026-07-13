@@ -29,6 +29,8 @@
 
 - **Avoid printing dividers that look like flags**: `echo "---"` can trigger security cues because it looks like a flag; prefer `echo "==="` instead.
 - **Avoid using `git -C` for the current repo**: this makes it hard to auto-approve commands. Be aware of which repo you are in, and use standard `git` commands for the current repo.
+- **Avoid workarounds**: if you get rate-limited or a command fails, strongly consider asking for help rather than preferring workarounds that would yield lower-quality results or making global changes to my configs (adding SSH keys etc).
+- **Avoid global state changes**: be wary of making changes that change state globally, e.g. changing configuration files, since there are often multiple agents in parallel.
 - **Multiple `gh` accounts**: on some machines, I have multiple accounts; I may have to run `gh auth switch`. Since it is a global setting, **do not run this youself**. Consider running `gh auth status --active`; on mismatch or 403, stop and ask me to switch.
 
 ## PRs
