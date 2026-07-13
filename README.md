@@ -32,6 +32,10 @@ brew install zoxide
 brew install --cask font-hack
 ```
 
+## TODO
+
+* [ ] `.gitconfig`?
+
 ## See also
 
 https://github.com/citelao/dotfiles2

@@ -40,6 +40,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	# Nevermind.
 	# add_to_path /opt/homebrew/opt/ruby/bin
 	# add_to_path /opt/homebrew/lib/ruby/gems/3.0.0/bin
+
+	# Salesforce: slack-objc tools
+	add_to_path /Users/bstolovitz/Projects/slack/slack-objc/bin
 else
 	add_to_path $HOME/.rbenv/bin
 fi
@@ -140,7 +143,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	#
 	# - slack (`run watch` requires Node)
 	# - code & cursor (they like to use Node)
-	zstyle ':omz:plugins:nvm' lazy-cmd slack code cursor
+	zstyle ':omz:plugins:nvm' lazy-cmd slack code cursor node npm
 
 else
 	# zsh-syntax-highlighting
@@ -234,6 +237,7 @@ if [[ -f "$SLACK_WEBAPP_ARTIFACTORY" ]]; then
 	source "$SLACK_WEBAPP_ARTIFACTORY"
 fi
 
+# Salesforce: Devbar
 # devbar-managed-start
 export NODE_EXTRA_CA_CERTS="$HOME/.devbar/certs/corporate-ca-bundle.pem"
 # devbar-managed-end
