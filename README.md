@@ -1,8 +1,10 @@
 # Dotfiles
 
-Citelao's personal dotfiles
+Citelao's personal dotfiles! What a treat!
 
 ## Install
+
+### macOS
 
 ```bash
 brew install chezmoi
@@ -30,6 +32,34 @@ brew install zoxide
 
 # https://github.com/source-foundry/Hack
 brew install --cask font-hack
+```
+
+### Windows
+
+```pwsh
+winget install twpayne.chezmoi
+chezmoi init https://github.com/citelao/dotfiles2.git
+chezmoi apply
+```
+
+You may also want:
+
+```pwsh
+Install-Module ZLocation -Scope CurrentUser
+& ([scriptblock]::Create((iwr 'https://to.loredo.me/Install-NerdFont.ps1'))) -Name hack
+
+winget install -e junegunn.fzf
+```
+
+## Editing
+
+```pwsh
+chezmoi cd
+c .
+
+# Commit
+# git add, etc
+git push
 ```
 
 ## TODO
