@@ -1,0 +1,15 @@
+{{ if eq .chezmoi.os "windows" }}
+# Mac-specific Library folder
+Library/
+
+{{ else }}
+# .dotfiles only has PowerShell config
+.dotfiles/
+
+# Windows-specific OneDrive stuff
+OneDrive/
+Documents/
+
+# Windows-specific config
+AppData/
+{{ end }}
