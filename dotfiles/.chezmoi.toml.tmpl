@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "windows" }}
+# chezmoi cd should use pwsh with no extra profile on Windows.
+[cd]
+    command = "pwsh"
+    arguments = ["-NoProfile", "-NoLogo"]
+{{ end }}
