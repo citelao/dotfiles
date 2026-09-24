@@ -6,6 +6,7 @@
 
 ## Workflow
 
+- **Worktree off latest main**: When told to start work, start it in a worktree based off the latest `main` or most-relevant branch. Avoid editing the main worktree directly unless asked; if confused, ask.
 - **Fix errors, don't remove validation**: Never remove tests, CI checks, or type validation to make errors go away. Fix the underlying issue instead.
 - **Clear, useful, small commits**: Work in small, chunks that deliver user-facing changes. Each commit should meaningfully affect the product in some meaningful way; don't check in unused code.
 - **Clean git tree**: I review diffs in my editor. Summarize what's in each chunk rather than dumping large diffs in the terminal. Don't create files you don't expect to commit yet — keep the working tree clean.
@@ -42,5 +43,5 @@
   > [!NOTE]
   > Generated via Claude Code.
   ```
-- **Sections**: "What Changed" (bullets), "Test Plan" (bullets with checkboxes).
-- Don't pre-check test boxes — only check what's actually been validated.
+- **Sections**: "What Changed" (bullets), "Test Plan" (bullets with checkboxes). Don't pre-check test boxes — only check what's actually been validated.
+- **Stacks**: use `gh stack` to stack PRs, so they appear stacked in the GitHub UI.
