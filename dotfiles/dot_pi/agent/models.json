@@ -1,5 +1,179 @@
 {
   "providers": {
+    "mux": {
+      "baseUrl": "http://127.0.0.1:8800",
+      "api": "anthropic-messages",
+      "apiKey": "mux-local",
+      "authHeader": true,
+      "headers": {
+        "X-Cost-Tag": "pi"
+      },
+      "models": [
+        {
+          "id": "claude-fable-5-1",
+          "name": "Fable 5.1 (mux → Vertex)",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "gpt-6-astra",
+          "name": "Astra (mux → SFR)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "sol",
+          "name": "Sol (mux → seat/Express)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "gpt-5.6-terra",
+          "name": "Terra (mux → LLM Gateway)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "gpt-5.6-luna",
+          "name": "Luna (mux → LLM Gateway)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "gpt-5.6-sol@chatgpt",
+          "name": "Sol (mux → ChatGPT seat)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "gpt-5.6-terra@chatgpt",
+          "name": "Terra (mux → ChatGPT seat)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "gpt-5.6-luna@chatgpt",
+          "name": "Luna (mux → ChatGPT seat)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "claude-opus-4-8",
+          "name": "Opus 4.8 (mux → LLM Gateway)",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        },
+        {
+          "id": "claude-sonnet-4-6",
+          "name": "Sonnet 4.6 (mux → LLM Gateway)",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000
+        }
+      ]
+    },
     "omlx": {
       "baseUrl": "http://127.0.0.1:8000/v1",
       "api": "openai-completions",
