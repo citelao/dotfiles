@@ -1,1 +1,2 @@
-{{- template "AGENTS" -}}
+{{/* Inject Pi as the agent name */}}
+{{- template "AGENTS" dict "AgentName" "Pi" -}}

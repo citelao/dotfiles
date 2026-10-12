@@ -62,6 +62,10 @@ c .
 git push
 ```
 
+## Notes
+
+- OpenCode uses Claude Code rules: https://opencode.ai/docs/rules/#global.
+
 ## TODO
 
 * [ ] `.gitconfig`?
